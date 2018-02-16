@@ -10,20 +10,23 @@ public class CorreiosFreteWSTest {
     
 	ICorreiosFrete correiosFrete;
 	
+	CorreiosFreteDTO correiosFreteDTO;
+	
 	@Before
 	public void setUp() {
 		correiosFrete = new CorreiosFreteWSImpl();
+		
+		correiosFreteDTO = new CorreiosFreteDTO();
+		
+		correiosFreteDTO.setsCepOrigem("74371520");
+		correiosFreteDTO.setsCepDestino("74672540");
+		correiosFreteDTO.setnVlPeso("1");
 	}
 	
 	@Test
     public void testWSPAC() {
-        
-		CorreiosFreteDTO correiosFreteDTO = new CorreiosFreteDTO();
 		
 		correiosFreteDTO.setnCdServico(TipoServico.PAC.getCodigo());
-		correiosFreteDTO.setsCepOrigem("74371520");
-		correiosFreteDTO.setsCepDestino("74672540");
-		correiosFreteDTO.setnVlPeso("1");
 		
 		List<ServicoXml> servicos = correiosFrete.calcPrecoPrazo(correiosFreteDTO);
 		
@@ -34,12 +37,7 @@ public class CorreiosFreteWSTest {
 	@Test
 	public void testWSSedex() {
 		
-		CorreiosFreteDTO correiosFreteDTO = new CorreiosFreteDTO();
-		
 		correiosFreteDTO.setnCdServico(TipoServico.SEDEX.getCodigo());
-		correiosFreteDTO.setsCepOrigem("74371520");
-		correiosFreteDTO.setsCepDestino("74672540");
-		correiosFreteDTO.setnVlPeso("1");
 		
 		List<ServicoXml> servicos = correiosFrete.calcPrecoPrazo(correiosFreteDTO);
 		
