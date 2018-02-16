@@ -9,12 +9,16 @@ public class CorreiosFreteWSTest {
 	@Test
     public void testApp() {
         
-		CorreiosFreteWS correiosFreteWS = new CorreiosFreteWS();
-		correiosFreteWS.setnCdServico(TipoServico.PAC.getCodigo());
-		correiosFreteWS.setsCepOrigem("74371520");
-		correiosFreteWS.setsCepDestino("74672540");
-		correiosFreteWS.setnVlPeso("1");
-		List<ServicoXml> valores = correiosFreteWS.calcular();
+		CorreiosFreteDTO correiosFreteDTO = new CorreiosFreteDTO();
+		
+		correiosFreteDTO.setnCdServico(TipoServico.PAC.getCodigo());
+		correiosFreteDTO.setsCepOrigem("74371520");
+		correiosFreteDTO.setsCepDestino("74672540");
+		correiosFreteDTO.setnVlPeso("1");
+		
+		ICorreiosFrete correiosFrete = new CorreiosFreteWSImpl();
+		
+		List<ServicoXml> valores = correiosFrete.calcPrecoPrazo(correiosFreteDTO);
 		
     }
 }

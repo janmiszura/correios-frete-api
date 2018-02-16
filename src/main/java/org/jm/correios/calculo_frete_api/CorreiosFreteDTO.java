@@ -1,15 +1,12 @@
 package org.jm.correios.calculo_frete_api;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.jm.util.CorreiosFreteException;
-import org.jm.util.HttpUteis;
 
-public class CorreiosFreteWS {
+public class CorreiosFreteDTO {
 	
-	static Logger logger = Logger.getLogger(CorreiosFreteWS.class);
+	static Logger logger = Logger.getLogger(CorreiosFreteDTO.class);
 	
 	private String nCdEmpresa;
 	
@@ -41,70 +38,20 @@ public class CorreiosFreteWS {
 	
 	private BigDecimal nVlValorDeclarado;
 	
-	private BigDecimal VALOR_DECLARADO_MINIMO = new BigDecimal(18.5);
-	
 	private String sCdAvisoRecebimento = "n";
 	
-	public CorreiosFreteWS() {
+	public CorreiosFreteDTO() {
 		super();
 		this.nCdEmpresa = "";
 		this.sDsSenha = "";
 		this.nCdServico = "";
-		this.sCepOrigem= "74510010";
+		this.sCepOrigem= "";
 		this.nVlPeso = "";//kg
 		this.nVlComprimento = "16";
 		this.nVlLargura = "11";
 		this.nVlAltura = "2";
 	}
 	
-	public List<ServicoXml> calcular() {
-	    
-		String url = "http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx";
-	    url += "?nCdEmpresa="+nCdEmpresa;
-	    url += "&sDsSenha="+sDsSenha;
-	    url += "&StrRetorno="+StrRetorno;
-	    url += "&nIndicaCalculo="+nIndicaCalculo;
-	    url += "&nCdServico="+nCdServico;
-	    url += "&sCepOrigem="+sCepOrigem;
-	    url += "&sCepDestino="+sCepDestino;
-	    url += "&nVlPeso="+nVlPeso;
-	    url += "&nCdFormato="+nCdFormato;
-	    url += "&nVlComprimento="+nVlComprimento;
-	    url += "&nVlAltura="+nVlAltura;
-		url += "&nVlLargura="+nVlLargura;
-	    if( nVlDiametro != null ) {
-	    	url += "&nVlDiametro="+nVlDiametro;
-	    }
-	    url += "&sCdMaoPropria="+sCdMaoPropria;
-	    
-	    if( nVlValorDeclarado != null ) {
-	    	if( nVlValorDeclarado.doubleValue() < VALOR_DECLARADO_MINIMO.doubleValue() ) {
-	    		nVlValorDeclarado = VALOR_DECLARADO_MINIMO;
-	    	}
-	    }
-	    
-	    url += "&nVlValorDeclarado="+(nVlValorDeclarado!=null?nVlValorDeclarado.intValue():VALOR_DECLARADO_MINIMO.toString());
-	    url += "&sCdAvisoRecebimento="+sCdAvisoRecebimento;
-	    
-	    if( logger.isDebugEnabled() ) {
-	    	logger.debug(url);
-	    }
-	    
-		String respostaXml = HttpUteis.sendGet(url, "UTF-8");
-		
-		if( logger.isDebugEnabled() ) {
-			logger.debug(respostaXml);
-		}
-		
-		if( ! respostaXml.contains("<Erro>0</Erro>") ) {
-			throw new CorreiosFreteException("erro ao consultar cep: "+this.sCepDestino);
-		}
-		
-		List<ServicoXml> fretes = ServicosXml.fromXml(respostaXml);
-		
-		return fretes;
-	}
-
 	public String getStrRetorno() {
 		return StrRetorno;
 	}
@@ -231,6 +178,16 @@ public class CorreiosFreteWS {
 
 	public void setsCdAvisoRecebimento(String sCdAvisoRecebimento) {
 		this.sCdAvisoRecebimento = sCdAvisoRecebimento;
+	}
+
+	@Override
+	public String toString() {
+		return "CorreiosFreteDTO [nCdEmpresa=" + nCdEmpresa + ", sDsSenha=" + sDsSenha + ", StrRetorno=" + StrRetorno
+				+ ", nIndicaCalculo=" + nIndicaCalculo + ", nCdServico=" + nCdServico + ", sCepOrigem=" + sCepOrigem
+				+ ", sCepDestino=" + sCepDestino + ", nVlPeso=" + nVlPeso + ", nCdFormato=" + nCdFormato
+				+ ", nVlComprimento=" + nVlComprimento + ", nVlAltura=" + nVlAltura + ", nVlLargura=" + nVlLargura
+				+ ", nVlDiametro=" + nVlDiametro + ", sCdMaoPropria=" + sCdMaoPropria + ", nVlValorDeclarado="
+				+ nVlValorDeclarado + ", sCdAvisoRecebimento=" + sCdAvisoRecebimento + "]";
 	}
 
 	
