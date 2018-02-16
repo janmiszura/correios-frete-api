@@ -30,4 +30,20 @@ public class CorreiosFreteWSTest {
 		Assert.assertEquals("0", servicos.get(0).getErro());
 		Assert.assertEquals(TipoServico.PAC.getCodigo(), servicos.get(0).getCodigo());
     }
+	
+	@Test
+	public void testWSSedex() {
+		
+		CorreiosFreteDTO correiosFreteDTO = new CorreiosFreteDTO();
+		
+		correiosFreteDTO.setnCdServico(TipoServico.SEDEX.getCodigo());
+		correiosFreteDTO.setsCepOrigem("74371520");
+		correiosFreteDTO.setsCepDestino("74672540");
+		correiosFreteDTO.setnVlPeso("1");
+		
+		List<ServicoXml> servicos = correiosFrete.calcPrecoPrazo(correiosFreteDTO);
+		
+		Assert.assertEquals("0", servicos.get(0).getErro());
+		Assert.assertEquals(TipoServico.SEDEX.getCodigo(), servicos.get(0).getCodigo());
+	}
 }
