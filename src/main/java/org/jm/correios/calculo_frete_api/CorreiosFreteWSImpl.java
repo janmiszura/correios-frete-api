@@ -1,6 +1,7 @@
 package org.jm.correios.calculo_frete_api;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -23,7 +24,7 @@ public class CorreiosFreteWSImpl implements ICorreiosFrete {
 	    url += "&nCdServico="+correiosFreteDTO.getnCdServico();
 	    url += "&sCepOrigem="+correiosFreteDTO.getsCepOrigem();
 	    url += "&sCepDestino="+correiosFreteDTO.getsCepDestino();
-	    url += "&nVlPeso="+correiosFreteDTO.getnVlPeso();
+	    url += "&nVlPeso="+correiosFreteDTO.getnVlPeso().setScale(2, RoundingMode.HALF_DOWN).toPlainString();
 	    url += "&nCdFormato="+correiosFreteDTO.getnCdFormato();
 	    url += "&nVlComprimento="+correiosFreteDTO.getnVlComprimento();
 	    url += "&nVlAltura="+correiosFreteDTO.getnVlAltura();

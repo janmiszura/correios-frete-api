@@ -1,12 +1,9 @@
 package org.jm.correios.calculo_frete_api;
 
 import java.math.BigDecimal;
-
-import org.apache.log4j.Logger;
+import java.math.MathContext;
 
 public class CorreiosFreteDTO {
-	
-	static Logger logger = Logger.getLogger(CorreiosFreteDTO.class);
 	
 	private String nCdEmpresa;
 	
@@ -22,7 +19,7 @@ public class CorreiosFreteDTO {
 	
 	private String sCepDestino;
 	
-	private String nVlPeso;//kg
+	private BigDecimal nVlPeso;//kg
 	
 	private String nCdFormato = "1";//caixa/pacote=1, rolo/prisma=2, Envelope=3
 	
@@ -46,7 +43,7 @@ public class CorreiosFreteDTO {
 		this.sDsSenha = "";
 		this.nCdServico = "";
 		this.sCepOrigem= "";
-		this.nVlPeso = "";//kg
+		this.nVlPeso = new BigDecimal(0.3);//kg
 		this.nVlComprimento = "16";
 		this.nVlLargura = "11";
 		this.nVlAltura = "2";
@@ -108,11 +105,11 @@ public class CorreiosFreteDTO {
 		this.sCepDestino = sCepDestino;
 	}
 
-	public String getnVlPeso() {
+	public BigDecimal getnVlPeso() {
 		return nVlPeso;
 	}
 
-	public void setnVlPeso(String nVlPeso) {
+	public void setnVlPeso(BigDecimal nVlPeso) {
 		this.nVlPeso = nVlPeso;
 	}
 

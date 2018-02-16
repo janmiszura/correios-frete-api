@@ -20,7 +20,6 @@ public class CorreiosFreteWSImplTest {
 		
 		correiosFreteDTO.setsCepOrigem("74371520");
 		correiosFreteDTO.setsCepDestino("74672540");
-		correiosFreteDTO.setnVlPeso("1");
 	}
 	
 	@Test
