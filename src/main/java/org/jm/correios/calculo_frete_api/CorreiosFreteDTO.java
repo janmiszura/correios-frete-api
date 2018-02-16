@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 
 public class CorreiosFreteDTO {
 	
+	public static final BigDecimal VALOR_DECLARADO_MINIMO = new BigDecimal(18.5);
+	
 	private String nCdEmpresa = "";
 	
 	private String sDsSenha = "";
@@ -176,6 +178,27 @@ public class CorreiosFreteDTO {
 				+ ", nVlComprimento=" + nVlComprimento + ", nVlAltura=" + nVlAltura + ", nVlLargura=" + nVlLargura
 				+ ", nVlDiametro=" + nVlDiametro + ", sCdMaoPropria=" + sCdMaoPropria + ", nVlValorDeclarado="
 				+ nVlValorDeclarado + ", sCdAvisoRecebimento=" + sCdAvisoRecebimento + "]";
+	}
+	
+	public Boolean ehValorDeclaradoValido() {
+		
+		if( this.nVlValorDeclarado == null ) {
+			return true;
+		}
+		
+		Boolean ehMaiorQueMinimo = this.nVlValorDeclarado.compareTo(VALOR_DECLARADO_MINIMO) == 1;
+		
+		if( ehMaiorQueMinimo ) {
+			return true;
+		}
+		
+		Boolean ehIgualAoMinimo = this.nVlValorDeclarado.compareTo(VALOR_DECLARADO_MINIMO) == 0;
+		
+		if( ehIgualAoMinimo ) {
+			return true;
+		}
+		
+		return false;
 	}
 
 	
