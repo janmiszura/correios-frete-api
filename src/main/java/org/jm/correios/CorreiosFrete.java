@@ -6,6 +6,9 @@ import org.jm.correios.calculo_frete_api.CorreiosFreteDTO;
 import org.jm.correios.calculo_frete_api.CorreiosFreteWSImpl;
 import org.jm.correios.calculo_frete_api.ICorreiosFrete;
 import org.jm.correios.calculo_frete_api.ServicoXml;
+import org.jm.util.CepDestinoNuloOuVazioException;
+import org.jm.util.CepOrigemNuloOuVazioException;
+import org.jm.util.Utils;
 
 public class CorreiosFrete {
 	
@@ -48,6 +51,14 @@ public class CorreiosFrete {
 	}
 	
 	public List<ServicoXml> calcPrecoPrazo() {
+		
+		if( Utils.isNullOrBlank(this.correiosFreteDTO.getsCepOrigem()) ) {
+			throw new CepOrigemNuloOuVazioException();
+		}
+		
+		if( Utils.isNullOrBlank(this.correiosFreteDTO.getsCepDestino()) ) {
+			throw new CepDestinoNuloOuVazioException();
+		}
 		
 		return correiosFreteInstance.calcPrecoPrazo(correiosFreteDTO);
 		
