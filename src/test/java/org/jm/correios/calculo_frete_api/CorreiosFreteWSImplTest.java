@@ -2,32 +2,31 @@ package org.jm.correios.calculo_frete_api;
 
 import java.util.List;
 
+import org.jm.correios.CorreiosFrete;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 public class CorreiosFreteWSImplTest {
     
-	ICorreiosFrete correiosFrete;
-	
-	CorreiosFreteDTO correiosFreteDTO;
+	CorreiosFrete correiosFrete;
 	
 	@Before
 	public void setUp() {
-		correiosFrete = new CorreiosFreteWSImpl();
 		
-		correiosFreteDTO = new CorreiosFreteDTO();
+		correiosFrete = 
+				CorreiosFrete
+				.novo()
+				.comCepOrigemDestino("74371520", "74672540");
 		
-		correiosFreteDTO.setsCepOrigem("74371520");
-		correiosFreteDTO.setsCepDestino("74672540");
 	}
 	
 	@Test
     public void testPAC() {
 		
-		correiosFreteDTO.setnCdServico(TipoServico.PAC.getCodigo());
+		correiosFrete.comTipoServico(TipoServico.PAC.getCodigo());
 		
-		List<ServicoXml> servicos = correiosFrete.calcPrecoPrazo(correiosFreteDTO);
+		List<ServicoXml> servicos = correiosFrete.calcPrecoPrazo();
 		
 		Assert.assertEquals("0", servicos.get(0).getErro());
 		Assert.assertEquals(TipoServico.PAC.getCodigo(), servicos.get(0).getCodigo());
@@ -36,9 +35,9 @@ public class CorreiosFreteWSImplTest {
 	@Test
 	public void testSedex() {
 		
-		correiosFreteDTO.setnCdServico(TipoServico.SEDEX.getCodigo());
+		correiosFrete.comTipoServico(TipoServico.SEDEX.getCodigo());
 		
-		List<ServicoXml> servicos = correiosFrete.calcPrecoPrazo(correiosFreteDTO);
+		List<ServicoXml> servicos = correiosFrete.calcPrecoPrazo();
 		
 		Assert.assertEquals("0", servicos.get(0).getErro());
 		Assert.assertEquals(TipoServico.SEDEX.getCodigo(), servicos.get(0).getCodigo());
