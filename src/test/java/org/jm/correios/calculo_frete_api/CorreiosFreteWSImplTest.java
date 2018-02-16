@@ -6,7 +6,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class CorreiosFreteWSTest {
+public class CorreiosFreteWSImplTest {
     
 	ICorreiosFrete correiosFrete;
 	
@@ -24,7 +24,7 @@ public class CorreiosFreteWSTest {
 	}
 	
 	@Test
-    public void testWSPAC() {
+    public void testPAC() {
 		
 		correiosFreteDTO.setnCdServico(TipoServico.PAC.getCodigo());
 		
@@ -35,7 +35,7 @@ public class CorreiosFreteWSTest {
     }
 	
 	@Test
-	public void testWSSedex() {
+	public void testSedex() {
 		
 		correiosFreteDTO.setnCdServico(TipoServico.SEDEX.getCodigo());
 		
