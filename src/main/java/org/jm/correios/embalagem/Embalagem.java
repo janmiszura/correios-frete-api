@@ -4,6 +4,14 @@ import org.jm.util.EmbalagemInvalidaException;
 
 public class Embalagem {
 	
+	public static final Embalagem CORREIOS_TIPO_1 = new Embalagem(18, 13.5f, 9);
+	public static final Embalagem CORREIOS_TIPO_2 = new Embalagem(27, 18, 9);
+	public static final Embalagem CORREIOS_TIPO_3 = new Embalagem(27, 22.5f, 13.5f);
+	public static final Embalagem CORREIOS_TIPO_4 = new Embalagem(36, 27, 18);
+	public static final Embalagem CORREIOS_TIPO_5 = new Embalagem(54, 36, 27);
+	public static final Embalagem CORREIOS_TIPO_6 = new Embalagem(36, 27, 27);
+	public static final Embalagem CORREIOS_TIPO_7 = new Embalagem(36, 28, 4);
+	
 	private float comprimento;//cm
 	private float largura;//cm
 	private float altura;//cm
@@ -42,6 +50,10 @@ public class Embalagem {
 
 	public void setAltura(float altura) {
 		this.altura = altura;
+	}
+	
+	public float calcularVolume() {
+		return comprimento*largura*altura;
 	}
 	
 	@Override
