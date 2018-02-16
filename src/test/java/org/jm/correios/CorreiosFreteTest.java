@@ -3,6 +3,7 @@ package org.jm.correios;
 import org.jm.correios.calculo_frete_api.TipoServico;
 import org.jm.util.CepDestinoNuloOuVazioException;
 import org.jm.util.CepOrigemNuloOuVazioException;
+import org.jm.util.TipoServicoNuloOuVazioException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -34,6 +35,15 @@ public class CorreiosFreteTest {
 	public void testValidarCepDestinoNuloOuVazio() {
 		
 		correiosFrete.comCepOrigemDestino("74000000", null);
+		
+		correiosFrete.calcPrecoPrazo();
+		
+	}
+	
+	@Test(expected=TipoServicoNuloOuVazioException.class)
+	public void testValidarTipoServicoNuloOuVazio() {
+		
+		correiosFrete.comTipoServico(null);
 		
 		correiosFrete.calcPrecoPrazo();
 		
