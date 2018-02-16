@@ -1,4 +1,4 @@
-package org.jm.correios.calculo_frete_api;
+package org.jm.correios.frete;
 
 public enum TipoServico {
 	

@@ -3,10 +3,10 @@ package org.jm.correios;
 import java.math.BigDecimal;
 import java.util.List;
 
-import org.jm.correios.calculo_frete_api.CorreiosFreteDTO;
-import org.jm.correios.calculo_frete_api.CorreiosFreteWSImpl;
-import org.jm.correios.calculo_frete_api.ICorreiosFrete;
-import org.jm.correios.calculo_frete_api.ServicoXml;
+import org.jm.correios.frete.CorreiosFreteDTO;
+import org.jm.correios.frete.CorreiosFreteWSImpl;
+import org.jm.correios.frete.ICorreiosFrete;
+import org.jm.correios.frete.ServicoXml;
 import org.jm.util.CepDestinoNuloOuVazioException;
 import org.jm.util.CepOrigemNuloOuVazioException;
 import org.jm.util.TipoServicoNuloOuVazioException;

@@ -1,8 +1,10 @@
-package org.jm.correios.calculo_frete_api;
+package org.jm.correios.frete;
 
 import java.util.List;
 
 import org.jm.correios.CorreiosFrete;
+import org.jm.correios.frete.ServicoXml;
+import org.jm.correios.frete.TipoServico;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

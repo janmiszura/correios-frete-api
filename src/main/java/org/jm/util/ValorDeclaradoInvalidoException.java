@@ -1,6 +1,6 @@
 package org.jm.util;
 
-import org.jm.correios.calculo_frete_api.CorreiosFreteDTO;
+import org.jm.correios.frete.CorreiosFreteDTO;
 
 public class ValorDeclaradoInvalidoException extends RuntimeException {
 	

@@ -2,7 +2,7 @@ package org.jm.correios;
 
 import java.math.BigDecimal;
 
-import org.jm.correios.calculo_frete_api.TipoServico;
+import org.jm.correios.frete.TipoServico;
 import org.jm.util.CepDestinoNuloOuVazioException;
 import org.jm.util.CepOrigemNuloOuVazioException;
 import org.jm.util.TipoServicoNuloOuVazioException;
