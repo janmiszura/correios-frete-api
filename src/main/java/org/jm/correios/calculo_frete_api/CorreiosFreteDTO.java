@@ -1,13 +1,12 @@
 package org.jm.correios.calculo_frete_api;
 
 import java.math.BigDecimal;
-import java.math.MathContext;
 
 public class CorreiosFreteDTO {
 	
-	private String nCdEmpresa;
+	private String nCdEmpresa = "";
 	
-	private String sDsSenha;
+	private String sDsSenha = "";
 	
 	private String StrRetorno = "xml";
 	
@@ -19,17 +18,17 @@ public class CorreiosFreteDTO {
 	
 	private String sCepDestino;
 	
-	private BigDecimal nVlPeso;//kg
+	private BigDecimal nVlPeso = new BigDecimal(0.3);//kg
 	
-	private String nCdFormato = "1";//caixa/pacote=1, rolo/prisma=2, Envelope=3
+	private Integer nCdFormato = 1;//caixa/pacote=1, rolo/prisma=2, Envelope=3
 	
-	private String nVlComprimento;//cm
+	private BigDecimal nVlComprimento = new BigDecimal(16);//cm
 	
-	private String nVlAltura;//cm
+	private BigDecimal nVlAltura = new BigDecimal(2);//cm
 	
-	private String nVlLargura;//cm
+	private BigDecimal nVlLargura = new BigDecimal(11);//cm
 	
-	private String nVlDiametro;//cm
+	private BigDecimal nVlDiametro;//cm
 	
 	private String sCdMaoPropria = "n";
 	
@@ -39,14 +38,6 @@ public class CorreiosFreteDTO {
 	
 	public CorreiosFreteDTO() {
 		super();
-		this.nCdEmpresa = "";
-		this.sDsSenha = "";
-		this.nCdServico = "";
-		this.sCepOrigem= "";
-		this.nVlPeso = new BigDecimal(0.3);//kg
-		this.nVlComprimento = "16";
-		this.nVlLargura = "11";
-		this.nVlAltura = "2";
 	}
 	
 	public String getStrRetorno() {
@@ -113,43 +104,43 @@ public class CorreiosFreteDTO {
 		this.nVlPeso = nVlPeso;
 	}
 
-	public String getnCdFormato() {
+	public Integer getnCdFormato() {
 		return nCdFormato;
 	}
 
-	public void setnCdFormato(String nCdFormato) {
+	public void setnCdFormato(Integer nCdFormato) {
 		this.nCdFormato = nCdFormato;
 	}
 
-	public String getnVlComprimento() {
+	public BigDecimal getnVlComprimento() {
 		return nVlComprimento;
 	}
 
-	public void setnVlComprimento(String nVlComprimento) {
+	public void setnVlComprimento(BigDecimal nVlComprimento) {
 		this.nVlComprimento = nVlComprimento;
 	}
 
-	public String getnVlAltura() {
+	public BigDecimal getnVlAltura() {
 		return nVlAltura;
 	}
 
-	public void setnVlAltura(String nVlAltura) {
+	public void setnVlAltura(BigDecimal nVlAltura) {
 		this.nVlAltura = nVlAltura;
 	}
 
-	public String getnVlLargura() {
+	public BigDecimal getnVlLargura() {
 		return nVlLargura;
 	}
 
-	public void setnVlLargura(String nVlLargura) {
+	public void setnVlLargura(BigDecimal nVlLargura) {
 		this.nVlLargura = nVlLargura;
 	}
 
-	public String getnVlDiametro() {
+	public BigDecimal getnVlDiametro() {
 		return nVlDiametro;
 	}
 
-	public void setnVlDiametro(String nVlDiametro) {
+	public void setnVlDiametro(BigDecimal nVlDiametro) {
 		this.nVlDiametro = nVlDiametro;
 	}
 

@@ -22,17 +22,20 @@ public class CorreiosFreteWSImpl implements ICorreiosFrete {
 	    url += "&StrRetorno="+correiosFreteDTO.getStrRetorno();
 	    url += "&nIndicaCalculo="+correiosFreteDTO.getnIndicaCalculo();
 	    url += "&nCdServico="+correiosFreteDTO.getnCdServico();
+	    
 	    url += "&sCepOrigem="+correiosFreteDTO.getsCepOrigem();
 	    url += "&sCepDestino="+correiosFreteDTO.getsCepDestino();
-	    url += "&nVlPeso="+correiosFreteDTO.getnVlPeso().setScale(2, RoundingMode.HALF_DOWN).toPlainString();
+	    
 	    url += "&nCdFormato="+correiosFreteDTO.getnCdFormato();
-	    url += "&nVlComprimento="+correiosFreteDTO.getnVlComprimento();
-	    url += "&nVlAltura="+correiosFreteDTO.getnVlAltura();
-		url += "&nVlLargura="+correiosFreteDTO.getnVlLargura();
+	    
+	    url += "&nVlPeso="+formatNumber(correiosFreteDTO.getnVlPeso());
+	    url += "&nVlComprimento="+formatNumber(correiosFreteDTO.getnVlComprimento());
+	    url += "&nVlAltura="+formatNumber(correiosFreteDTO.getnVlAltura());
+		url += "&nVlLargura="+formatNumber(correiosFreteDTO.getnVlLargura());
 	    
 		if( correiosFreteDTO.getnVlDiametro() != null ) {
-	    	url += "&nVlDiametro="+correiosFreteDTO.getnVlDiametro();
-	    }
+			url += "&nVlDiametro="+formatNumber(correiosFreteDTO.getnVlDiametro());
+		}
 		
 	    url += "&sCdMaoPropria="+correiosFreteDTO.getsCdMaoPropria();
 	    
@@ -66,6 +69,13 @@ public class CorreiosFreteWSImpl implements ICorreiosFrete {
 		
 		return fretes;
 	}
-
 	
+	private String formatNumber(BigDecimal v) {
+		
+		if( v == null ) {
+			return "";
+		}
+		
+		return v.setScale(2, RoundingMode.HALF_DOWN).toPlainString();
+	}
 }
