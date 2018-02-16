@@ -12,8 +12,6 @@ public class CorreiosFreteWSImpl implements ICorreiosFrete {
 	
 	static Logger logger = Logger.getLogger(CorreiosFreteWSImpl.class);
 	
-	private BigDecimal VALOR_DECLARADO_MINIMO = new BigDecimal(18.5);
-	
 	public List<ServicoXml> calcPrecoPrazo(CorreiosFreteDTO correiosFreteDTO) throws CorreiosFreteException {
 		
 		String url = "http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx";
@@ -42,12 +40,8 @@ public class CorreiosFreteWSImpl implements ICorreiosFrete {
 	    BigDecimal valorDeclarado = correiosFreteDTO.getnVlValorDeclarado();
 	    
 	    if( valorDeclarado != null ) {
-	    	if( valorDeclarado.doubleValue() < VALOR_DECLARADO_MINIMO.doubleValue() ) {
-	    		valorDeclarado = VALOR_DECLARADO_MINIMO;
-	    	}
+	    	url += "&nVlValorDeclarado="+formatNumber(valorDeclarado);
 	    }
-	    
-	    url += "&nVlValorDeclarado="+(valorDeclarado!=null?valorDeclarado.toString():VALOR_DECLARADO_MINIMO.toString());
 	    
 	    url += "&sCdAvisoRecebimento="+correiosFreteDTO.getsCdAvisoRecebimento();
 	    
