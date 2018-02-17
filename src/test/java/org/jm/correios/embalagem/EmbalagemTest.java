@@ -17,7 +17,7 @@ public class EmbalagemTest {
 	@Test
     public void testValidarDimensoesMinimas() {
 		
-		Assert.assertTrue( embalagem.getDimensoes().ehValida() );
+		Assert.assertTrue( embalagem.getDimensoes().ehValidaComoEmbalagem() );
 		
 	}
 	
@@ -26,7 +26,7 @@ public class EmbalagemTest {
 		
 		embalagem.getDimensoes().setComprimento(15);
 		
-		embalagem.getDimensoes().ehValida();
+		embalagem.getDimensoes().ehValidaComoEmbalagem();
 	}
 	
 	@Test(expected=DimensoesInvalidasException.class)
@@ -34,7 +34,7 @@ public class EmbalagemTest {
 		
 		embalagem.getDimensoes().setLargura(10);
 		
-		embalagem.getDimensoes().ehValida();
+		embalagem.getDimensoes().ehValidaComoEmbalagem();
 	}
 	
 	@Test(expected=DimensoesInvalidasException.class)
@@ -42,7 +42,7 @@ public class EmbalagemTest {
 		
 		embalagem.getDimensoes().setAltura(1);
 		
-		embalagem.getDimensoes().ehValida();
+		embalagem.getDimensoes().ehValidaComoEmbalagem();
 		
 	}
 	
@@ -51,7 +51,7 @@ public class EmbalagemTest {
 		
 		embalagem.getDimensoes().setComprimento(106);
 		
-		embalagem.getDimensoes().ehValida();
+		embalagem.getDimensoes().ehValidaComoEmbalagem();
 		
 	}
 	
@@ -60,7 +60,7 @@ public class EmbalagemTest {
 		
 		embalagem.getDimensoes().setLargura(106);
 		
-		embalagem.getDimensoes().ehValida();
+		embalagem.getDimensoes().ehValidaComoEmbalagem();
 		
 	}
 	
@@ -69,7 +69,7 @@ public class EmbalagemTest {
 		
 		embalagem.getDimensoes().setAltura(106);
 		
-		embalagem.getDimensoes().ehValida();
+		embalagem.getDimensoes().ehValidaComoEmbalagem();
 		
 	}
 	
@@ -78,7 +78,7 @@ public class EmbalagemTest {
 		
 		embalagem = new Embalagem(105, 50, 50);
 		
-		embalagem.getDimensoes().ehValida();
+		embalagem.getDimensoes().ehValidaComoEmbalagem();
 		
 	}
 }

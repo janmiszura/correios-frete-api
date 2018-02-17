@@ -49,7 +49,7 @@ public class Embalador {
 		
 		for (Embalagem embalagem : embalagensDisponiveis) {
 			
-			if( ! embalagem.getDimensoes().ehValida() ) {
+			if( ! embalagem.getDimensoes().ehValidaComoEmbalagem() ) {
 				retorno = false;
 			}
 			
@@ -64,7 +64,7 @@ public class Embalador {
 		
 		for (Item item : itens.keySet()) {
 			
-			if( ! item.getDimensoes().ehValida() ) {
+			if( ! item.getDimensoes().ehValidaComoItem() ) {
 				retorno = false;
 			}
 			

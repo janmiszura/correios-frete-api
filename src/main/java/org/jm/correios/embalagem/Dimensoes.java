@@ -92,7 +92,7 @@ public class Dimensoes {
 	 * Obs. 1: A soma resultante do comprimento + largura + altura não deve superar 200 cm.
 	 * Obs. 2: A soma resultante do comprimento + o dobro do diâmetro não pode ser menor que 28 cm.
 	 */
-	public boolean ehValida() {
+	public boolean ehValidaComoEmbalagem() {
 		
 		if( comprimento < 16 ) {
 			throw new DimensoesInvalidasException();
@@ -105,6 +105,29 @@ public class Dimensoes {
 		if( altura < 2 ) {
 			throw new DimensoesInvalidasException();
 		}
+		
+		if( comprimento > 105 ) {
+			throw new DimensoesInvalidasException();
+		}
+		
+		if( largura > 105 ) {
+			throw new DimensoesInvalidasException();
+		}
+		
+		if( altura > 105 ) {
+			throw new DimensoesInvalidasException();
+		}
+		
+		float soma = comprimento + largura + altura;
+		
+		if( soma > 200 ) {
+			throw new DimensoesInvalidasException();
+		}
+		
+		return true;
+	}
+	
+	public boolean ehValidaComoItem() {
 		
 		if( comprimento > 105 ) {
 			throw new DimensoesInvalidasException();

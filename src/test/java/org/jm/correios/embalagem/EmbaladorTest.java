@@ -68,4 +68,19 @@ public class EmbaladorTest {
 		Assert.assertEquals(Embalagem.CORREIOS_TIPO_4, embalagensNecessarias.get(0));
 		
 	}
+	
+//	@Test
+//	public void testEmbalagemDoisItens() {
+//		
+//		List<Embalagem> embalagensNecessarias = 
+//				Embalador
+//				.novo()
+//				.addEmbalagemDisponivel(Embalagem.CORREIOS_TIPO_4)
+//				.addItem(new Item(20, 11, 5), 2)
+//				.calcular();
+//		
+//		Assert.assertEquals(1, embalagensNecessarias.size());
+//		Assert.assertEquals(Embalagem.CORREIOS_TIPO_4, embalagensNecessarias.get(0));
+//		
+//	}
 }
