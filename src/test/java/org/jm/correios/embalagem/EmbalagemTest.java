@@ -17,59 +17,59 @@ public class EmbalagemTest {
 	@Test
     public void testValidarDimensoesMinimas() {
 		
-		Assert.assertTrue( embalagem.ehValida() );
+		Assert.assertTrue( embalagem.getDimensoes().ehValida() );
 		
 	}
 	
 	@Test(expected=EmbalagemInvalidaException.class)
 	public void testValidarDimensoesMinimasComprimento() {
 		
-		embalagem.setComprimento(15);
+		embalagem.getDimensoes().setComprimento(15);
 		
-		embalagem.ehValida();
+		embalagem.getDimensoes().ehValida();
 	}
 	
 	@Test(expected=EmbalagemInvalidaException.class)
 	public void testValidarDimensoesMinimasLargura() {
 		
-		embalagem.setLargura(10);
+		embalagem.getDimensoes().setLargura(10);
 		
-		embalagem.ehValida();
+		embalagem.getDimensoes().ehValida();
 	}
 	
 	@Test(expected=EmbalagemInvalidaException.class)
 	public void testValidarDimensoesMinimasAltura() {
 		
-		embalagem.setAltura(1);
+		embalagem.getDimensoes().setAltura(1);
 		
-		embalagem.ehValida();
+		embalagem.getDimensoes().ehValida();
 		
 	}
 	
 	@Test(expected=EmbalagemInvalidaException.class)
 	public void testValidarDimensoesMaximasComprimento() {
 		
-		embalagem.setComprimento(106);
+		embalagem.getDimensoes().setComprimento(106);
 		
-		embalagem.ehValida();
+		embalagem.getDimensoes().ehValida();
 		
 	}
 	
 	@Test(expected=EmbalagemInvalidaException.class)
 	public void testValidarDimensoesMaximasLargura() {
 		
-		embalagem.setLargura(106);
+		embalagem.getDimensoes().setLargura(106);
 		
-		embalagem.ehValida();
+		embalagem.getDimensoes().ehValida();
 		
 	}
 	
 	@Test(expected=EmbalagemInvalidaException.class)
 	public void testValidarDimensoesMaximasAltura() {
 		
-		embalagem.setAltura(106);
+		embalagem.getDimensoes().setAltura(106);
 		
-		embalagem.ehValida();
+		embalagem.getDimensoes().ehValida();
 		
 	}
 	
@@ -78,7 +78,7 @@ public class EmbalagemTest {
 		
 		embalagem = new Embalagem(105, 50, 50);
 		
-		embalagem.ehValida();
+		embalagem.getDimensoes().ehValida();
 		
 	}
 }

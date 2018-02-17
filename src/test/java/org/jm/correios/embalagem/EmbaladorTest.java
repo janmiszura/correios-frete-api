@@ -31,6 +31,17 @@ public class EmbaladorTest {
 		
 	}
 	
+//	@Test(expected=ItemNaoPermitidoViaCorreiosException.class)
+//	public void testItemNaoPermitidoViaCorreios() {
+//		
+//		Embalador
+//		.novo()
+//		.addEmbalagemDisponivel(Embalagem.CORREIOS_TIPO_4)
+//		.addItem(new Item(10, 10, 10), 1)
+//		.calcular();
+//		
+//	}
+	
 	@Test
     public void testEmbalagemUmItem() {
 		
