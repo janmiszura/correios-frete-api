@@ -27,7 +27,7 @@ public class CorreiosFreteTest {
 				.comTipoServico(TipoServico.PAC.getCodigo())
 				.comCepOrigemDestino("74371520", "74672540")
 				.addEmbalagem(Embalagem.CORREIOS_TIPO_4)
-				.addItem(new Item(20, 12, 5))
+				.addItem(new Item(20, 12, 5), 1)
 				;
 		
 	}

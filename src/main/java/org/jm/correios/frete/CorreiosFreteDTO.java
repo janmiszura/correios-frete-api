@@ -2,6 +2,8 @@ package org.jm.correios.frete;
 
 import java.math.BigDecimal;
 
+import org.jm.correios.embalagem.Embalagem;
+
 public class CorreiosFreteDTO {
 	
 	public static final BigDecimal VALOR_DECLARADO_MINIMO = new BigDecimal(18.5);
@@ -200,8 +202,13 @@ public class CorreiosFreteDTO {
 		
 		return false;
 	}
-
 	
-	
+	public void comEmbalagem(Embalagem embalagem) {
+		
+		this.nVlComprimento = new BigDecimal(embalagem.getDimensoes().getComprimento());
+		this.nVlLargura = new BigDecimal(embalagem.getDimensoes().getLargura());
+		this.nVlAltura = new BigDecimal(embalagem.getDimensoes().getAltura());
+		
+	}
 	
 }

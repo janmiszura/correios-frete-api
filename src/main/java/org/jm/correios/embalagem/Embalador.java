@@ -26,11 +26,25 @@ public class Embalador {
 		return this;
 	}
 	
+	public Embalador retirarEmbalagensDisponiveis() {
+		
+		this.embalagensDisponiveis.clear();
+		
+		return this;
+	}
+	
 	public Embalador addItem(Item item, Integer qtd) {
 		
 		for (int i = 0; i < qtd; i++) {
 			itens.add( item.clone() );
 		}
+		
+		return this;
+	}
+	
+	public Embalador retirarItens() {
+		
+		this.itens.clear();
 		
 		return this;
 	}
@@ -65,7 +79,7 @@ public class Embalador {
 		return retorno;
 	}
 	
-	public List<Embalagem> calcular() {
+	public void validar() {
 		
 		if( this.embalagensDisponiveis.isEmpty() ) {
 			throw new EmbalagemIndefinidaException();
@@ -82,6 +96,12 @@ public class Embalador {
 		if( ! itensComDimensoesPermitidas() ) {
 			throw new DimensoesInvalidasException();
 		}
+		
+	}
+	
+	public List<Embalagem> calcular() {
+		
+		validar();
 		
 		int flag = 0;
 		while( haItemParaEmbalar() ) {

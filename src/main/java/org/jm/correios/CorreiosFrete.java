@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.jm.correios.embalagem.Embalador;
 import org.jm.correios.embalagem.Embalagem;
 import org.jm.correios.embalagem.Item;
 import org.jm.correios.frete.CorreiosFreteDTO;
@@ -12,8 +13,6 @@ import org.jm.correios.frete.ICorreiosFrete;
 import org.jm.correios.frete.ServicoXml;
 import org.jm.util.CepDestinoNuloOuVazioException;
 import org.jm.util.CepOrigemNuloOuVazioException;
-import org.jm.util.EmbalagemIndefinidaException;
-import org.jm.util.ItemIndefinidoException;
 import org.jm.util.TipoServicoNuloOuVazioException;
 import org.jm.util.Utils;
 import org.jm.util.ValorDeclaradoInvalidoException;
@@ -28,9 +27,7 @@ public class CorreiosFrete {
 	
 	private CorreiosFreteDTO correiosFreteDTO = new CorreiosFreteDTO();
 	
-	private List<Embalagem> embalagens = new ArrayList<Embalagem>();
-	
-	private List<Item> itens = new ArrayList<Item>();
+	private Embalador embalador = Embalador.novo();
 	
 	public static CorreiosFrete novo() {
 		
@@ -71,33 +68,33 @@ public class CorreiosFrete {
 	
 	public CorreiosFrete addEmbalagem(Embalagem embalagem) {
 		
-		this.embalagens.add(embalagem);
+		this.embalador.addEmbalagemDisponivel(embalagem);
 		
 		return this;
 	}
 	
 	public CorreiosFrete retirarEmbalagens() {
 		
-		this.embalagens.clear();
+		this.embalador.retirarEmbalagensDisponiveis();
 		
 		return this;
 	}
 	
-	public CorreiosFrete addItem(Item item) {
+	public CorreiosFrete addItem(Item item, Integer qtd) {
 		
-		this.itens.add(item);
+		this.embalador.addItem(item, qtd);
 		
 		return this;
 	}
 	
 	public CorreiosFrete retirarItens() {
 		
-		this.itens.clear();
+		this.embalador.retirarItens();
 		
 		return this;
 	}
 	
-	public List<ServicoXml> calcPrecoPrazo() {
+	public List<ResultadoFrete> calcPrecoPrazo() {
 		
 		if( Utils.isNullOrBlank(this.correiosFreteDTO.getsCepOrigem()) ) {
 			throw new CepOrigemNuloOuVazioException();
@@ -114,16 +111,21 @@ public class CorreiosFrete {
 		if( ! this.correiosFreteDTO.ehValorDeclaradoValido() ) {
 			throw new ValorDeclaradoInvalidoException();
 		}
-
-		if( this.embalagens.isEmpty() ) {
-			throw new EmbalagemIndefinidaException();
+		
+		List<ResultadoFrete> resultados = new ArrayList<ResultadoFrete>();
+		
+		List<Embalagem> embalagens = embalador.calcular();
+		
+		for (Embalagem embalagem : embalagens) {
+			
+			correiosFreteDTO.comEmbalagem(embalagem);
+			
+			List<ServicoXml> servicosXml = correiosFreteInstance.calcPrecoPrazo(correiosFreteDTO);
+			
+			resultados.add( new ResultadoFrete(embalagem, servicosXml) );
 		}
 		
-		if( this.itens.isEmpty() ) {
-			throw new ItemIndefinidoException();
-		}
-		
-		return correiosFreteInstance.calcPrecoPrazo(correiosFreteDTO);
+		return resultados;
 		
 	}
 }
