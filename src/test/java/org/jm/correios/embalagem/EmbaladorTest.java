@@ -65,22 +65,36 @@ public class EmbaladorTest {
 				.calcular();
 		
 		Assert.assertEquals(1, embalagensNecessarias.size());
-		Assert.assertEquals(Embalagem.CORREIOS_TIPO_4, embalagensNecessarias.get(0));
+		Assert.assertEquals(Embalagem.CORREIOS_TIPO_4.getDimensoes(), embalagensNecessarias.get(0).getDimensoes());
 		
 	}
 	
-//	@Test
-//	public void testEmbalagemDoisItens() {
-//		
-//		List<Embalagem> embalagensNecessarias = 
-//				Embalador
-//				.novo()
-//				.addEmbalagemDisponivel(Embalagem.CORREIOS_TIPO_4)
-//				.addItem(new Item(20, 11, 5), 2)
-//				.calcular();
-//		
-//		Assert.assertEquals(1, embalagensNecessarias.size());
-//		Assert.assertEquals(Embalagem.CORREIOS_TIPO_4, embalagensNecessarias.get(0));
-//		
-//	}
+	@Test
+	public void testEmbalagemDoisItensPequenosUmaEmbalagem() {
+		
+		List<Embalagem> embalagensNecessarias = 
+				Embalador
+				.novo()
+				.addEmbalagemDisponivel(Embalagem.CORREIOS_TIPO_4)
+				.addItem(new Item(20, 12, 15), 2)
+				.calcular();
+		
+		Assert.assertEquals(1, embalagensNecessarias.size());
+		Assert.assertEquals(Embalagem.CORREIOS_TIPO_4.getDimensoes(), embalagensNecessarias.get(0).getDimensoes());
+	}
+	
+	@Test
+	public void testEmbalagemDoisItensGrandesDuasEmbalagens() {
+		
+		List<Embalagem> embalagensNecessarias = 
+				Embalador
+				.novo()
+				.addEmbalagemDisponivel(Embalagem.CORREIOS_TIPO_4)
+				.addItem(new Item(30, 20, 15), 2)
+				.calcular();
+		
+		Assert.assertEquals(2, embalagensNecessarias.size());
+		Assert.assertEquals(Embalagem.CORREIOS_TIPO_4.getDimensoes(), embalagensNecessarias.get(0).getDimensoes());
+		Assert.assertEquals(Embalagem.CORREIOS_TIPO_4.getDimensoes(), embalagensNecessarias.get(1).getDimensoes());
+	}
 }

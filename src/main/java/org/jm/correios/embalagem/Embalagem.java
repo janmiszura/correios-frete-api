@@ -1,5 +1,9 @@
 package org.jm.correios.embalagem;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
 public class Embalagem {
 	
 	public static final Embalagem CORREIOS_TIPO_1 = new Embalagem(18, 13.5f, 9);
@@ -10,7 +14,11 @@ public class Embalagem {
 	public static final Embalagem CORREIOS_TIPO_6 = new Embalagem(36, 27, 27);
 	public static final Embalagem CORREIOS_TIPO_7 = new Embalagem(36, 28, 4);
 	
+	private String id = UUID.randomUUID().toString().substring(0, 4);
+	
 	private Dimensoes dimensoes;
+	
+	private List<Item> itens = new ArrayList<Item>();
 	
 	public Embalagem(float comprimento, float largura, float altura) {
 		super();
@@ -21,6 +29,15 @@ public class Embalagem {
 		
 		return new Embalagem(comprimento, largura, altura);
 	}
+	
+
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
 
 	public Dimensoes getDimensoes() {
 		return dimensoes;
@@ -29,17 +46,25 @@ public class Embalagem {
 	public void setDimensoes(Dimensoes dimensoes) {
 		this.dimensoes = dimensoes;
 	}
+	
+	public List<Item> getItens() {
+		return itens;
+	}
+
+	public void setItens(List<Item> itens) {
+		this.itens = itens;
+	}
 
 	@Override
 	public String toString() {
-		return "Embalagem [dimensoes=" + dimensoes + "]";
+		return "Embalagem [id=" + id + ", dimensoes=" + dimensoes + ", itens=" + itens + "]";
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((dimensoes == null) ? 0 : dimensoes.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 
@@ -52,16 +77,51 @@ public class Embalagem {
 		if (getClass() != obj.getClass())
 			return false;
 		Embalagem other = (Embalagem) obj;
-		if (dimensoes == null) {
-			if (other.dimensoes != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!dimensoes.equals(other.dimensoes))
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
 	}
+
+	public float calcularVolumeItens() {
+		
+		float volumeItens = 0;
+		
+		for (Item item : itens) {
+			
+			volumeItens += item.getDimensoes().calcularVolume();
+			
+		}
+		
+		return volumeItens;
+	}
+	
+	public boolean cabeItem(Item item) {
+		
+		float volumeTotal = this.getDimensoes().calcularVolume();
+		
+		float volumeItens = calcularVolumeItens();
+		
+		float volumeRestante = volumeTotal - volumeItens;
+		
+		float volumeItem = item.getDimensoes().calcularVolume();
+		
+		return volumeRestante > volumeItem;
+	}
 	
 	
-	
-	
+	public Embalagem clone() {
+		
+		Embalagem e = Embalagem.comDimensoes(
+					this.dimensoes.getComprimento(), 
+					this.dimensoes.getLargura(), 
+					this.dimensoes.getAltura());
+		
+		e.setItens(itens);
+		
+		return e;
+	}
 	
 }

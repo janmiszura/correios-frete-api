@@ -1,9 +1,7 @@
 package org.jm.correios.embalagem;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.jm.util.DimensoesInvalidasException;
 import org.jm.util.EmbalagemIndefinidaException;
@@ -13,7 +11,7 @@ public class Embalador {
 	
 	private List<Embalagem> embalagensDisponiveis = new ArrayList<Embalagem>();
 	
-	private Map<Item, Integer> itens = new HashMap<Item, Integer>();
+	private List<Item> itens = new ArrayList<Item>();
 	
 	private List<Embalagem> embalagensNecessarias = new ArrayList<Embalagem>();
 	
@@ -30,15 +28,9 @@ public class Embalador {
 	
 	public Embalador addItem(Item item, Integer qtd) {
 		
-		Integer qtdTotal = itens.get(item);
-		
-		if( qtdTotal == null ) {
-			qtdTotal = 0;
+		for (int i = 0; i < qtd; i++) {
+			itens.add( item.clone() );
 		}
-		
-		qtdTotal += qtd;
-		
-		this.itens.put(item, qtdTotal);
 		
 		return this;
 	}
@@ -62,7 +54,7 @@ public class Embalador {
 		
 		Boolean retorno = true;
 		
-		for (Item item : itens.keySet()) {
+		for (Item item : itens) {
 			
 			if( ! item.getDimensoes().ehValidaComoItem() ) {
 				retorno = false;
@@ -91,10 +83,58 @@ public class Embalador {
 			throw new DimensoesInvalidasException();
 		}
 		
-		Embalagem e = embalagensDisponiveis.get(0);
-		
-		embalagensNecessarias.add(e);
+		int flag = 0;
+		while( haItemParaEmbalar() ) {
+			
+			if( flag == itens.size()*5 ) {
+				break;
+			}
+			
+			embalarItens();
+			
+			flag++;
+		}
 		
 		return embalagensNecessarias;
+	}
+
+	private Boolean haItemParaEmbalar() {
+		
+		Boolean retorno = false;
+		
+		for (Item item : itens) {
+			
+			if( ! item.getJaEmbalado() ) {
+				retorno = true;
+			}
+		}
+		
+		return retorno;
+	}
+	
+	private void embalarItens() {
+		
+		for (Embalagem embalagem : embalagensDisponiveis) {
+			
+			for (Item item : itens) {
+				
+				if( item.getJaEmbalado() ) {
+					continue;
+				}
+				
+				if( embalagem.cabeItem(item) ) {
+					
+					embalagem.getItens().add(item);
+					item.setJaEmbalado(true);
+					
+				}
+				
+			}
+			
+			embalagensNecessarias.add( embalagem.clone() );
+			embalagem.getItens().clear();
+			
+		}
+		
 	}
 }

@@ -2,7 +2,7 @@ package org.jm.correios.embalagem;
 
 import org.jm.util.DimensoesInvalidasException;
 
-public class Dimensoes {
+public class Dimensoes implements Comparable<Dimensoes> {
 	
 	private float comprimento;//cm
 	private float largura;//cm
@@ -148,6 +148,22 @@ public class Dimensoes {
 		}
 		
 		return true;
+	}
+
+	public int compareTo(Dimensoes o) {
+		
+		if( o == null ) {
+			return 0;
+		}
+		
+		float v1 = this.calcularVolume();
+		float v2 = o.calcularVolume();
+		
+		if( v1 == v2 ) {
+			return 0;
+		}
+		
+		return v1 > v2 ? 1 : -1;
 	}
 	
 	
