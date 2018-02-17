@@ -1,14 +1,19 @@
 package org.jm.correios;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
+import org.jm.correios.embalagem.Embalagem;
+import org.jm.correios.embalagem.Item;
 import org.jm.correios.frete.CorreiosFreteDTO;
 import org.jm.correios.frete.CorreiosFreteWSImpl;
 import org.jm.correios.frete.ICorreiosFrete;
 import org.jm.correios.frete.ServicoXml;
 import org.jm.util.CepDestinoNuloOuVazioException;
 import org.jm.util.CepOrigemNuloOuVazioException;
+import org.jm.util.EmbalagemIndefinidaException;
+import org.jm.util.ItemIndefinidoException;
 import org.jm.util.TipoServicoNuloOuVazioException;
 import org.jm.util.Utils;
 import org.jm.util.ValorDeclaradoInvalidoException;
@@ -22,6 +27,10 @@ public class CorreiosFrete {
 	}
 	
 	private CorreiosFreteDTO correiosFreteDTO = new CorreiosFreteDTO();
+	
+	private List<Embalagem> embalagens = new ArrayList<Embalagem>();
+	
+	private List<Item> itens = new ArrayList<Item>();
 	
 	public static CorreiosFrete novo() {
 		
@@ -60,6 +69,34 @@ public class CorreiosFrete {
 		return this;
 	}
 	
+	public CorreiosFrete addEmbalagem(Embalagem embalagem) {
+		
+		this.embalagens.add(embalagem);
+		
+		return this;
+	}
+	
+	public CorreiosFrete retirarEmbalagens() {
+		
+		this.embalagens.clear();
+		
+		return this;
+	}
+	
+	public CorreiosFrete addItem(Item item) {
+		
+		this.itens.add(item);
+		
+		return this;
+	}
+	
+	public CorreiosFrete retirarItens() {
+		
+		this.itens.clear();
+		
+		return this;
+	}
+	
 	public List<ServicoXml> calcPrecoPrazo() {
 		
 		if( Utils.isNullOrBlank(this.correiosFreteDTO.getsCepOrigem()) ) {
@@ -76,6 +113,14 @@ public class CorreiosFrete {
 		
 		if( ! this.correiosFreteDTO.ehValorDeclaradoValido() ) {
 			throw new ValorDeclaradoInvalidoException();
+		}
+
+		if( this.embalagens.isEmpty() ) {
+			throw new EmbalagemIndefinidaException();
+		}
+		
+		if( this.itens.isEmpty() ) {
+			throw new ItemIndefinidoException();
 		}
 		
 		return correiosFreteInstance.calcPrecoPrazo(correiosFreteDTO);
