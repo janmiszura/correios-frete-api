@@ -1,6 +1,6 @@
 package org.jm.correios.embalagem;
 
-import org.jm.util.EmbalagemInvalidaException;
+import org.jm.util.DimensoesInvalidasException;
 
 public class Dimensoes {
 	
@@ -95,33 +95,33 @@ public class Dimensoes {
 	public boolean ehValida() {
 		
 		if( comprimento < 16 ) {
-			throw new EmbalagemInvalidaException();
+			throw new DimensoesInvalidasException();
 		}
 		
 		if( largura < 11 ) {
-			throw new EmbalagemInvalidaException();
+			throw new DimensoesInvalidasException();
 		}
 		
 		if( altura < 2 ) {
-			throw new EmbalagemInvalidaException();
+			throw new DimensoesInvalidasException();
 		}
 		
 		if( comprimento > 105 ) {
-			throw new EmbalagemInvalidaException();
+			throw new DimensoesInvalidasException();
 		}
 		
 		if( largura > 105 ) {
-			throw new EmbalagemInvalidaException();
+			throw new DimensoesInvalidasException();
 		}
 		
 		if( altura > 105 ) {
-			throw new EmbalagemInvalidaException();
+			throw new DimensoesInvalidasException();
 		}
 		
 		float soma = comprimento + largura + altura;
 		
 		if( soma > 200 ) {
-			throw new EmbalagemInvalidaException();
+			throw new DimensoesInvalidasException();
 		}
 		
 		return true;

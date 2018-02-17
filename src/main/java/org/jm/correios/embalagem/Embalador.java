@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.jm.util.DimensoesInvalidasException;
 import org.jm.util.EmbalagemIndefinidaException;
 import org.jm.util.ItemIndefinidoException;
 
@@ -42,6 +43,36 @@ public class Embalador {
 		return this;
 	}
 	
+	private Boolean embalagensComDimensoesPermitidas() {
+		
+		Boolean retorno = true;
+		
+		for (Embalagem embalagem : embalagensDisponiveis) {
+			
+			if( ! embalagem.getDimensoes().ehValida() ) {
+				retorno = false;
+			}
+			
+		}
+		
+		return retorno;
+	}
+	
+	private Boolean itensComDimensoesPermitidas() {
+		
+		Boolean retorno = true;
+		
+		for (Item item : itens.keySet()) {
+			
+			if( ! item.getDimensoes().ehValida() ) {
+				retorno = false;
+			}
+			
+		}
+		
+		return retorno;
+	}
+	
 	public List<Embalagem> calcular() {
 		
 		if( this.embalagensDisponiveis.isEmpty() ) {
@@ -50,6 +81,14 @@ public class Embalador {
 		
 		if( this.itens.isEmpty() ) {
 			throw new ItemIndefinidoException();
+		}
+		
+		if( ! embalagensComDimensoesPermitidas() ) {
+			throw new DimensoesInvalidasException();
+		}
+		
+		if( ! itensComDimensoesPermitidas() ) {
+			throw new DimensoesInvalidasException();
 		}
 		
 		Embalagem e = embalagensDisponiveis.get(0);
