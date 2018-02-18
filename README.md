@@ -19,8 +19,8 @@ List<ResultadoFrete> resultados = CorreiosFrete
 
 ## TODO list
 
-1 - Melhorar embalador de itens (embalagens de tamanhos diferentes)
-2 - Implementar limitador quanto ao número de embalagens
-3 - Implementar formato Rolo/Prisma
-4 - Implementar formato Envelope
+1. Melhorar embalador de itens (embalagens de tamanhos diferentes)
+2. Implementar limitador quanto ao número de embalagens
+3. Implementar formato Rolo/Prisma
+4. Implementar formato Envelope
 
