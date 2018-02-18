@@ -38,7 +38,7 @@ public class EmbaladorTest {
 		Embalador
 		.novo()
 		.addEmbalagemDisponivel(new Embalagem(106, 15, 10))
-		.addItem(new Item(105, 15, 10), 1)
+		.addItem(new Item(105, 15, 10, 1), 1)
 		.calcular();
 		
 	}
@@ -49,7 +49,7 @@ public class EmbaladorTest {
 		Embalador
 		.novo()
 		.addEmbalagemDisponivel(Embalagem.CORREIOS_TIPO_4)
-		.addItem(new Item(106, 15, 10), 1)
+		.addItem(new Item(106, 15, 10, 1), 1)
 		.calcular();
 		
 	}
@@ -61,7 +61,7 @@ public class EmbaladorTest {
 				Embalador
 				.novo()
 				.addEmbalagemDisponivel(Embalagem.CORREIOS_TIPO_4)
-				.addItem(new Item(20, 15, 10), 1)
+				.addItem(new Item(20, 15, 10, 1), 1)
 				.calcular();
 		
 		Assert.assertEquals(1, embalagensNecessarias.size());
@@ -76,7 +76,7 @@ public class EmbaladorTest {
 				Embalador
 				.novo()
 				.addEmbalagemDisponivel(Embalagem.CORREIOS_TIPO_4)
-				.addItem(new Item(20, 12, 15), 2)
+				.addItem(new Item(20, 12, 15, 1), 2)
 				.calcular();
 		
 		Assert.assertEquals(1, embalagensNecessarias.size());
@@ -90,7 +90,7 @@ public class EmbaladorTest {
 				Embalador
 				.novo()
 				.addEmbalagemDisponivel(Embalagem.CORREIOS_TIPO_4)
-				.addItem(new Item(30, 20, 15), 2)
+				.addItem(new Item(30, 20, 15, 1), 2)
 				.calcular();
 		
 		Assert.assertEquals(2, embalagensNecessarias.size());

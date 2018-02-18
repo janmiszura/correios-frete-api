@@ -209,6 +209,8 @@ public class CorreiosFreteDTO {
 		this.nVlLargura = new BigDecimal(embalagem.getDimensoes().getLargura());
 		this.nVlAltura = new BigDecimal(embalagem.getDimensoes().getAltura());
 		
+		this.nVlPeso = new BigDecimal(embalagem.calcularPeso());
+		
 	}
 	
 }

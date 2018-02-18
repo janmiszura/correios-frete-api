@@ -119,9 +119,22 @@ public class Embalagem {
 					this.dimensoes.getLargura(), 
 					this.dimensoes.getAltura());
 		
-		e.setItens(itens);
+		e.getItens().addAll(itens);
 		
 		return e;
+	}
+	
+	public float calcularPeso() {
+		
+		float pesoTotal = 0;
+		
+		for (Item item : itens) {
+			
+			pesoTotal += item.getPeso();
+			
+		}
+		
+		return pesoTotal;
 	}
 	
 }

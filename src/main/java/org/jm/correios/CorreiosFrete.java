@@ -94,6 +94,11 @@ public class CorreiosFrete {
 		return this;
 	}
 	
+	public List<Embalagem> calcularEmbalagensNecessarias() {
+		List<Embalagem> embalagens = embalador.calcular();
+		return embalagens;
+	}
+	
 	public List<ResultadoFrete> calcPrecoPrazo() {
 		
 		if( Utils.isNullOrBlank(this.correiosFreteDTO.getsCepOrigem()) ) {
@@ -112,9 +117,9 @@ public class CorreiosFrete {
 			throw new ValorDeclaradoInvalidoException();
 		}
 		
-		List<ResultadoFrete> resultados = new ArrayList<ResultadoFrete>();
+		List<Embalagem> embalagens = calcularEmbalagensNecessarias();
 		
-		List<Embalagem> embalagens = embalador.calcular();
+		List<ResultadoFrete> resultados = new ArrayList<ResultadoFrete>();
 		
 		for (Embalagem embalagem : embalagens) {
 			

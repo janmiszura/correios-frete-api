@@ -8,18 +8,16 @@ public class Item {
 	
 	private Dimensoes dimensoes;
 	
+	private float peso;
+	
 	private Boolean jaEmbalado = false;
 	
-	public Item(float comprimento, float largura, float altura) {
+	public Item(float comprimento, float largura, float altura, float peso) {
 		super();
 		this.dimensoes = new Dimensoes(comprimento, largura, altura);
+		this.peso = peso;
 	}
-
-	public static Item comDimensoes(float comprimento, float largura, float altura) {
-		
-		return new Item(comprimento, largura, altura);
-	}
-
+	
 	public Dimensoes getDimensoes() {
 		return dimensoes;
 	}
@@ -34,6 +32,14 @@ public class Item {
 
 	public void setJaEmbalado(Boolean jaEmbalado) {
 		this.jaEmbalado = jaEmbalado;
+	}
+
+	public float getPeso() {
+		return peso;
+	}
+
+	public void setPeso(float peso) {
+		this.peso = peso;
 	}
 
 	@Override
@@ -61,9 +67,11 @@ public class Item {
 		return true;
 	}
 
+
+
 	@Override
 	public String toString() {
-		return "Item [id=" + id + ", dimensoes=" + dimensoes + ", jaEmbalado=" + jaEmbalado + "]";
+		return "Item [id=" + id + ", dimensoes=" + dimensoes + ", peso=" + peso + ", jaEmbalado=" + jaEmbalado + "]";
 	}
 
 	public String getId() {
@@ -76,10 +84,11 @@ public class Item {
 
 	protected Item clone() {
 		
-		return Item.comDimensoes(
+		return new Item(
 				this.getDimensoes().getComprimento(), 
 				this.getDimensoes().getLargura(), 
-				this.getDimensoes().getAltura());
+				this.getDimensoes().getAltura(),
+				this.peso);
 	}
 	
 	
