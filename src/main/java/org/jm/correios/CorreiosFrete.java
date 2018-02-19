@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.jm.correios.embalagem.Embalador;
 import org.jm.correios.embalagem.Embalagem;
 import org.jm.correios.embalagem.Item;
@@ -18,6 +19,8 @@ import org.jm.util.Utils;
 import org.jm.util.ValorDeclaradoInvalidoException;
 
 public class CorreiosFrete {
+	
+	static Logger logger = Logger.getLogger(CorreiosFrete.class);
 	
 	private static ICorreiosFrete correiosFreteInstance;
 	
@@ -124,6 +127,10 @@ public class CorreiosFrete {
 		for (Embalagem embalagem : embalagens) {
 			
 			correiosFreteDTO.comEmbalagem(embalagem);
+			
+			if( logger.isDebugEnabled() ) {
+				logger.debug("("+embalagem.getId()+"): "+embalagem);
+			}
 			
 			List<ServicoXml> servicosXml = correiosFreteInstance.calcPrecoPrazo(correiosFreteDTO);
 			

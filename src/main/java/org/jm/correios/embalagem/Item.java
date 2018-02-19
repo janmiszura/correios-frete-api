@@ -4,7 +4,7 @@ import java.util.UUID;
 
 public class Item {
 	
-	private String id = UUID.randomUUID().toString().substring(0, 4);
+	private String id = UUID.randomUUID().toString().substring(0, 6);
 	
 	private Dimensoes dimensoes;
 	

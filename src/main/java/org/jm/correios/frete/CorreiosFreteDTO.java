@@ -8,6 +8,8 @@ public class CorreiosFreteDTO {
 	
 	public static final BigDecimal VALOR_DECLARADO_MINIMO = new BigDecimal(18.5);
 	
+	private String idConsulta;
+	
 	private String nCdEmpresa = "";
 	
 	private String sDsSenha = "";
@@ -44,6 +46,16 @@ public class CorreiosFreteDTO {
 		super();
 	}
 	
+	
+	
+	public String getIdConsulta() {
+		return idConsulta;
+	}
+
+	public void setIdConsulta(String idConsulta) {
+		this.idConsulta = idConsulta;
+	}
+
 	public String getStrRetorno() {
 		return StrRetorno;
 	}
@@ -174,12 +186,12 @@ public class CorreiosFreteDTO {
 
 	@Override
 	public String toString() {
-		return "CorreiosFreteDTO [nCdEmpresa=" + nCdEmpresa + ", sDsSenha=" + sDsSenha + ", StrRetorno=" + StrRetorno
-				+ ", nIndicaCalculo=" + nIndicaCalculo + ", nCdServico=" + nCdServico + ", sCepOrigem=" + sCepOrigem
-				+ ", sCepDestino=" + sCepDestino + ", nVlPeso=" + nVlPeso + ", nCdFormato=" + nCdFormato
-				+ ", nVlComprimento=" + nVlComprimento + ", nVlAltura=" + nVlAltura + ", nVlLargura=" + nVlLargura
-				+ ", nVlDiametro=" + nVlDiametro + ", sCdMaoPropria=" + sCdMaoPropria + ", nVlValorDeclarado="
-				+ nVlValorDeclarado + ", sCdAvisoRecebimento=" + sCdAvisoRecebimento + "]";
+		return "CorreiosFreteDTO [idConsulta=" + idConsulta + ", nCdEmpresa=" + nCdEmpresa + ", sDsSenha=" + sDsSenha
+				+ ", StrRetorno=" + StrRetorno + ", nIndicaCalculo=" + nIndicaCalculo + ", nCdServico=" + nCdServico
+				+ ", sCepOrigem=" + sCepOrigem + ", sCepDestino=" + sCepDestino + ", nVlPeso=" + nVlPeso
+				+ ", nCdFormato=" + nCdFormato + ", nVlComprimento=" + nVlComprimento + ", nVlAltura=" + nVlAltura
+				+ ", nVlLargura=" + nVlLargura + ", nVlDiametro=" + nVlDiametro + ", sCdMaoPropria=" + sCdMaoPropria
+				+ ", nVlValorDeclarado=" + nVlValorDeclarado + ", sCdAvisoRecebimento=" + sCdAvisoRecebimento + "]";
 	}
 	
 	public Boolean ehValorDeclaradoValido() {
@@ -204,6 +216,8 @@ public class CorreiosFreteDTO {
 	}
 	
 	public void comEmbalagem(Embalagem embalagem) {
+		
+		this.idConsulta = embalagem.getId();
 		
 		this.nVlComprimento = new BigDecimal(embalagem.getDimensoes().getComprimento());
 		this.nVlLargura = new BigDecimal(embalagem.getDimensoes().getLargura());

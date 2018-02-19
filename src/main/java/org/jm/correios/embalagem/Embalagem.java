@@ -14,7 +14,7 @@ public class Embalagem {
 	public static final Embalagem CORREIOS_TIPO_6 = new Embalagem(36, 27, 27);
 	public static final Embalagem CORREIOS_TIPO_7 = new Embalagem(36, 28, 4);
 	
-	private String id = UUID.randomUUID().toString().substring(0, 4);
+	private String id = UUID.randomUUID().toString().substring(0, 6);
 	
 	private Dimensoes dimensoes;
 	
@@ -57,7 +57,7 @@ public class Embalagem {
 
 	@Override
 	public String toString() {
-		return "Embalagem [id=" + id + ", dimensoes=" + dimensoes + ", itens=" + itens + "]";
+		return "Embalagem [id=" + id + ", dimensoes=" + dimensoes + ", itens=" + itens + ", pesoDosItens: " + calcularPeso() + "]";
 	}
 
 	@Override

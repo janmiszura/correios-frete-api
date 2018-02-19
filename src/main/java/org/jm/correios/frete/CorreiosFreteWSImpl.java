@@ -46,16 +46,19 @@ public class CorreiosFreteWSImpl implements ICorreiosFrete {
 	    url += "&sCdAvisoRecebimento="+correiosFreteDTO.getsCdAvisoRecebimento();
 	    
 	    if( logger.isDebugEnabled() ) {
-	    	logger.debug(url);
+	    	logger.debug("("+correiosFreteDTO.getIdConsulta()+"): "+url);
 	    }
 	    
 		String respostaXml = HttpUteis.sendGet(url, "UTF-8");
 		
 		if( logger.isDebugEnabled() ) {
-			logger.debug(respostaXml);
+			logger.debug("("+correiosFreteDTO.getIdConsulta()+"): "+respostaXml);
 		}
 		
 		if( ! respostaXml.contains("<Erro>0</Erro>") ) {
+			
+			logger.error("("+correiosFreteDTO.getIdConsulta()+"): "+respostaXml);
+			
 			throw new CorreiosFreteException("erro ao consultar cep: "+correiosFreteDTO.getsCepDestino());
 		}
 		
