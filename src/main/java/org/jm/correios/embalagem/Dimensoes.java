@@ -4,6 +4,7 @@ import org.jm.util.AlturaMinimaInvalidaException;
 import org.jm.util.ComprimentoMaximoInvalidoException;
 import org.jm.util.ComprimentoMinimoInvalidoException;
 import org.jm.util.DimensoesInvalidasException;
+import org.jm.util.LarguraMaximaInvalidaException;
 import org.jm.util.LarguraMinimaInvalidaException;
 
 public class Dimensoes implements Comparable<Dimensoes> {
@@ -115,7 +116,7 @@ public class Dimensoes implements Comparable<Dimensoes> {
 		}
 		
 		if( largura > 105 ) {
-			throw new DimensoesInvalidasException();
+			throw new LarguraMaximaInvalidaException();
 		}
 		
 		if( altura > 105 ) {

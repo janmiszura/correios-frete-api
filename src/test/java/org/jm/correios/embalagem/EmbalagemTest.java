@@ -4,6 +4,7 @@ import org.jm.util.AlturaMinimaInvalidaException;
 import org.jm.util.ComprimentoMaximoInvalidoException;
 import org.jm.util.ComprimentoMinimoInvalidoException;
 import org.jm.util.DimensoesInvalidasException;
+import org.jm.util.LarguraMaximaInvalidaException;
 import org.jm.util.LarguraMinimaInvalidaException;
 import org.junit.Before;
 import org.junit.Test;
@@ -58,7 +59,7 @@ public class EmbalagemTest {
 		
 	}
 	
-	@Test(expected=DimensoesInvalidasException.class)
+	@Test(expected=LarguraMaximaInvalidaException.class)
 	public void testValidarDimensoesMaximasLargura() {
 		
 		embalagem.getDimensoes().setLargura(106);
