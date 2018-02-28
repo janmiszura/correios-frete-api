@@ -1,5 +1,6 @@
 package org.jm.correios.embalagem;
 
+import org.jm.util.ComprimentoMinimoInvalidoException;
 import org.jm.util.DimensoesInvalidasException;
 
 public class Dimensoes implements Comparable<Dimensoes> {
@@ -95,7 +96,7 @@ public class Dimensoes implements Comparable<Dimensoes> {
 	public void ehValidaComoEmbalagem() {
 		
 		if( comprimento < 16 ) {
-			throw new DimensoesInvalidasException();
+			throw new ComprimentoMinimoInvalidoException();
 		}
 		
 		if( largura < 11 ) {
