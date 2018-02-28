@@ -4,7 +4,6 @@ import org.jm.util.AlturaMaximaInvalidaException;
 import org.jm.util.AlturaMinimaInvalidaException;
 import org.jm.util.ComprimentoMaximoInvalidoException;
 import org.jm.util.ComprimentoMinimoInvalidoException;
-import org.jm.util.DimensoesInvalidasException;
 import org.jm.util.LarguraMaximaInvalidaException;
 import org.jm.util.LarguraMinimaInvalidaException;
 import org.jm.util.LimiteDaSomaDasDimensoesExcedidoException;
@@ -136,21 +135,21 @@ public class Dimensoes implements Comparable<Dimensoes> {
 	public void ehValidaComoItem() {
 		
 		if( comprimento > 105 ) {
-			throw new DimensoesInvalidasException();
+			throw new ComprimentoMaximoInvalidoException();
 		}
 		
 		if( largura > 105 ) {
-			throw new DimensoesInvalidasException();
+			throw new LarguraMaximaInvalidaException();
 		}
 		
 		if( altura > 105 ) {
-			throw new DimensoesInvalidasException();
+			throw new AlturaMaximaInvalidaException();
 		}
 		
 		float soma = comprimento + largura + altura;
 		
 		if( soma > 200 ) {
-			throw new DimensoesInvalidasException();
+			throw new LimiteDaSomaDasDimensoesExcedidoException();
 		}
 		
 	}

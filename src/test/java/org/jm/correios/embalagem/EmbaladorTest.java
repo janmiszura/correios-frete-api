@@ -2,9 +2,12 @@ package org.jm.correios.embalagem;
 
 import java.util.List;
 
-import org.jm.util.DimensoesInvalidasException;
+import org.jm.util.AlturaMaximaInvalidaException;
+import org.jm.util.ComprimentoMaximoInvalidoException;
 import org.jm.util.EmbalagemIndefinidaException;
 import org.jm.util.ItemIndefinidoException;
+import org.jm.util.LarguraMaximaInvalidaException;
+import org.jm.util.LimiteDaSomaDasDimensoesExcedidoException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,7 +35,7 @@ public class EmbaladorTest {
 		
 	}
 	
-	@Test(expected=DimensoesInvalidasException.class)
+	@Test(expected=ComprimentoMaximoInvalidoException.class)
 	public void testEmbalagemNaoPermitidaViaCorreios() {
 		
 		Embalador
@@ -43,13 +46,46 @@ public class EmbaladorTest {
 		
 	}
 	
-	@Test(expected=DimensoesInvalidasException.class)
-	public void testItemNaoPermitidoViaCorreios() {
+	@Test(expected=ComprimentoMaximoInvalidoException.class)
+	public void testItemNaoPermitidoViaCorreiosComprimentoMaximo() {
 		
 		Embalador
 		.novo()
 		.addEmbalagemDisponivel(Embalagem.CORREIOS_TIPO_4)
 		.addItem(new Item(106, 15, 10, 1), 1)
+		.calcular();
+		
+	}
+	
+	@Test(expected=LarguraMaximaInvalidaException.class)
+	public void testItemNaoPermitidoViaCorreiosLarguraMaxima() {
+		
+		Embalador
+		.novo()
+		.addEmbalagemDisponivel(Embalagem.CORREIOS_TIPO_4)
+		.addItem(new Item(20, 106, 10, 1), 1)
+		.calcular();
+		
+	}
+	
+	@Test(expected=AlturaMaximaInvalidaException.class)
+	public void testItemNaoPermitidoViaCorreiosAlturaMaxima() {
+		
+		Embalador
+		.novo()
+		.addEmbalagemDisponivel(Embalagem.CORREIOS_TIPO_4)
+		.addItem(new Item(20, 10, 106, 1), 1)
+		.calcular();
+		
+	}
+	
+	@Test(expected=LimiteDaSomaDasDimensoesExcedidoException.class)
+	public void testItemNaoPermitidoViaCorreiosSomaDasDimensoes() {
+		
+		Embalador
+		.novo()
+		.addEmbalagemDisponivel(Embalagem.CORREIOS_TIPO_4)
+		.addItem(new Item(80, 80, 70, 1), 1)
 		.calcular();
 		
 	}
