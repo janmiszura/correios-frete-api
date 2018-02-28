@@ -108,7 +108,7 @@ public class Embalagem {
 		
 		float volumeItem = item.getDimensoes().calcularVolume();
 		
-		return volumeRestante > volumeItem;
+		return volumeRestante >= volumeItem;
 	}
 	
 	

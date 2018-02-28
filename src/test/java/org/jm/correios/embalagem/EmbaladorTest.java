@@ -106,6 +106,24 @@ public class EmbaladorTest {
 	}
 	
 	@Test
+	public void testEmbalagemEItemMesmasDimensoes() {
+		
+		float comp = 20;
+		float larg = 15;
+		float alt = 10;
+		
+		List<Embalagem> embalagensNecessarias = 
+				Embalador
+				.novo()
+				.addEmbalagemDisponivel(new Embalagem(comp, larg, alt))
+				.addItem(new Item(comp, larg, alt, 1), 1)
+				.calcular();
+		
+		Assert.assertEquals(1, embalagensNecessarias.size());
+		
+	}
+	
+	@Test
 	public void testEmbalagemDoisItensPequenosUmaEmbalagem() {
 		
 		List<Embalagem> embalagensNecessarias = 

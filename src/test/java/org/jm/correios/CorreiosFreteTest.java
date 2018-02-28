@@ -125,4 +125,16 @@ public class CorreiosFreteTest {
 		Assert.assertEquals(2.5d, embalagens.get(0).calcularPeso(), 0.01);
 		
 	}
+	
+	@Test
+	public void testValidarEmbalagemItemMesmasDimensoes() {
+		
+		List<ResultadoFrete> resultados = correiosFrete
+		.retirarEmbalagens()
+		.addEmbalagem(new Embalagem(20, 12, 10))
+		.addItem(new Item(20, 12, 10, 0.5f), 1)
+		.calcPrecoPrazo();
+		
+		Assert.assertEquals(1, resultados.size());
+	}
 }
