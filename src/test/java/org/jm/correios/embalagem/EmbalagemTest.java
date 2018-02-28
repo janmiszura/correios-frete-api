@@ -2,6 +2,7 @@ package org.jm.correios.embalagem;
 
 import org.jm.util.ComprimentoMinimoInvalidoException;
 import org.jm.util.DimensoesInvalidasException;
+import org.jm.util.LarguraMinimaInvalidaException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -29,7 +30,7 @@ public class EmbalagemTest {
 		embalagem.getDimensoes().ehValidaComoEmbalagem();
 	}
 	
-	@Test(expected=DimensoesInvalidasException.class)
+	@Test(expected=LarguraMinimaInvalidaException.class)
 	public void testValidarDimensoesMinimasLargura() {
 		
 		embalagem.getDimensoes().setLargura(10);
