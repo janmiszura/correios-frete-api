@@ -132,6 +132,7 @@ public class CorreiosFreteTest {
 		List<ResultadoFrete> resultados = correiosFrete
 		.retirarEmbalagens()
 		.addEmbalagem(new Embalagem(20, 12, 10))
+		.retirarItens()
 		.addItem(new Item(20, 12, 10, 0.5f), 1)
 		.calcPrecoPrazo();
 		
