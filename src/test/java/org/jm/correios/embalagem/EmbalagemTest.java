@@ -4,9 +4,9 @@ import org.jm.util.AlturaMaximaInvalidaException;
 import org.jm.util.AlturaMinimaInvalidaException;
 import org.jm.util.ComprimentoMaximoInvalidoException;
 import org.jm.util.ComprimentoMinimoInvalidoException;
-import org.jm.util.DimensoesInvalidasException;
 import org.jm.util.LarguraMaximaInvalidaException;
 import org.jm.util.LarguraMinimaInvalidaException;
+import org.jm.util.LimiteDaSomaDasDimensoesExcedidoException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -78,7 +78,7 @@ public class EmbalagemTest {
 		
 	}
 	
-	@Test(expected=DimensoesInvalidasException.class)
+	@Test(expected=LimiteDaSomaDasDimensoesExcedidoException.class)
 	public void testValidarDimensoesRegraDaSomaSuperar200() {
 		
 		embalagem = new Embalagem(105, 50, 50);
