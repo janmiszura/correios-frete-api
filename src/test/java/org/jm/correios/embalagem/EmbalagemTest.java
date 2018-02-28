@@ -1,7 +1,6 @@
 package org.jm.correios.embalagem;
 
 import org.jm.util.DimensoesInvalidasException;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,7 +16,7 @@ public class EmbalagemTest {
 	@Test
     public void testValidarDimensoesMinimas() {
 		
-		Assert.assertTrue( embalagem.getDimensoes().ehValidaComoEmbalagem() );
+		embalagem.getDimensoes().ehValidaComoEmbalagem();
 		
 	}
 	

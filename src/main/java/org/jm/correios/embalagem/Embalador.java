@@ -49,34 +49,24 @@ public class Embalador {
 		return this;
 	}
 	
-	private Boolean embalagensComDimensoesPermitidas() {
-		
-		Boolean retorno = true;
+	private void verificarEmbalagensComDimensoesPermitidas() {
 		
 		for (Embalagem embalagem : embalagensDisponiveis) {
 			
-			if( ! embalagem.getDimensoes().ehValidaComoEmbalagem() ) {
-				retorno = false;
-			}
+			embalagem.getDimensoes().ehValidaComoEmbalagem();
 			
 		}
 		
-		return retorno;
 	}
 	
-	private Boolean itensComDimensoesPermitidas() {
-		
-		Boolean retorno = true;
+	private void verificarItensComDimensoesPermitidas() {
 		
 		for (Item item : itens) {
 			
-			if( ! item.getDimensoes().ehValidaComoItem() ) {
-				retorno = false;
-			}
+			item.getDimensoes().ehValidaComoItem();
 			
 		}
 		
-		return retorno;
 	}
 	
 	public void validar() {
@@ -89,13 +79,9 @@ public class Embalador {
 			throw new ItemIndefinidoException();
 		}
 		
-		if( ! embalagensComDimensoesPermitidas() ) {
-			throw new DimensoesInvalidasException();
-		}
+		verificarEmbalagensComDimensoesPermitidas();
 		
-		if( ! itensComDimensoesPermitidas() ) {
-			throw new DimensoesInvalidasException();
-		}
+		verificarItensComDimensoesPermitidas();
 		
 	}
 	

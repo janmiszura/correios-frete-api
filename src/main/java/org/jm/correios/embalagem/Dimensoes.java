@@ -92,7 +92,7 @@ public class Dimensoes implements Comparable<Dimensoes> {
 	 * Obs. 1: A soma resultante do comprimento + largura + altura não deve superar 200 cm.
 	 * Obs. 2: A soma resultante do comprimento + o dobro do diâmetro não pode ser menor que 28 cm.
 	 */
-	public boolean ehValidaComoEmbalagem() {
+	public void ehValidaComoEmbalagem() {
 		
 		if( comprimento < 16 ) {
 			throw new DimensoesInvalidasException();
@@ -124,10 +124,9 @@ public class Dimensoes implements Comparable<Dimensoes> {
 			throw new DimensoesInvalidasException();
 		}
 		
-		return true;
 	}
 	
-	public boolean ehValidaComoItem() {
+	public void ehValidaComoItem() {
 		
 		if( comprimento > 105 ) {
 			throw new DimensoesInvalidasException();
@@ -147,7 +146,6 @@ public class Dimensoes implements Comparable<Dimensoes> {
 			throw new DimensoesInvalidasException();
 		}
 		
-		return true;
 	}
 
 	public int compareTo(Dimensoes o) {
