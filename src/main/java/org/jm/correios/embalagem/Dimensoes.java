@@ -1,5 +1,6 @@
 package org.jm.correios.embalagem;
 
+import org.jm.util.AlturaMaximaInvalidaException;
 import org.jm.util.AlturaMinimaInvalidaException;
 import org.jm.util.ComprimentoMaximoInvalidoException;
 import org.jm.util.ComprimentoMinimoInvalidoException;
@@ -120,7 +121,7 @@ public class Dimensoes implements Comparable<Dimensoes> {
 		}
 		
 		if( altura > 105 ) {
-			throw new DimensoesInvalidasException();
+			throw new AlturaMaximaInvalidaException();
 		}
 		
 		float soma = comprimento + largura + altura;
