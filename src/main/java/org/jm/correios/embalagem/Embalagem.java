@@ -134,6 +134,10 @@ public class Embalagem {
 			
 		}
 		
+		if( pesoTotal < 0.3 ) {
+			pesoTotal = 0.3f;
+		}
+		
 		return pesoTotal;
 	}
 	

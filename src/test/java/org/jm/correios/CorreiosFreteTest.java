@@ -127,6 +127,24 @@ public class CorreiosFreteTest {
 	}
 	
 	@Test
+	public void testPesoMinimo() {
+		
+		CorreiosFrete correiosFrete = 
+				CorreiosFrete
+				.novo()
+				.comTipoServico(TipoServico.PAC.getCodigo())
+				.comCepOrigemDestino("74371520", "74672540")
+				.addEmbalagem(Embalagem.CORREIOS_TIPO_4)
+				.addItem(new Item(20, 12, 5, 0), 1)
+				;
+		
+		List<Embalagem> embalagens = correiosFrete.calcularEmbalagensNecessarias();
+		
+		Assert.assertEquals(0.3d, embalagens.get(0).calcularPeso(), 0.001);
+		
+	}
+	
+	@Test
 	public void testValidarEmbalagemItemMesmasDimensoes() {
 		
 		List<ResultadoFrete> resultados = correiosFrete
